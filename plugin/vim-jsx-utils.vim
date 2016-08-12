@@ -1,3 +1,7 @@
+if !exists("g:jsx_utils_each_line_mode")
+    let g:jsx_utils_each_line_mode = "after-props"
+endif
+
 function! JSXIsSelfCloseTag()
   let l:line_number = line(".")
   let l:line = getline(".")
@@ -96,11 +100,17 @@ function! JSXEachAttributeInLine()
 
   if &expandtab
     let l:padding = repeat(" ", (identation_length + &shiftwidth))
+    let l:base_padding = repeat(" ", identation_length)
   else
     let l:padding = repeat("\t", identation_length + 1)
+    let l:base_padding = repeat("\t", identation_length)
   endif
 
   let @q = substitute(line, "\\w\\+=[{|'|\"]", "\\n" . padding . "&", "g")
+
+  if g:jsx_utils_each_line_mode ==# 'line-aligned'
+    let @q = substitute(getreg("q"), "/\\?>$", "\\n" . base_padding . "&", "g")
+  endif
 
   let @q = substitute(getreg("q"), "\ \\n", "\\n", "g")
 

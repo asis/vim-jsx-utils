@@ -29,6 +29,11 @@ Put the current tag on a return statement with parenthesis.
 ###JSXEachAttributeInLine
 Put each tag attribute's on its own line to better readability.
 
+You can set a global to align the closing bracket with the line containing the opening tag:
+
+```
+let g:jsx_utils_each_line_mode='line-aligned'
+```
 ![](examples/eachline-vim.gif)
 
 ###JSXExtractPartialPrompt

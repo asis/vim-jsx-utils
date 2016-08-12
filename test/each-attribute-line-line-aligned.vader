@@ -1,7 +1,7 @@
 Before (set the identation and alignment option):
   let &shiftwidth = 2
   let &expandtab = 1
-  let g:jsx_utils_each_line_mode='after-props'
+  let g:jsx_utils_each_line_mode='line-aligned'
 Given jsx (self close component):
   class Foo extends React {
     render () {
@@ -22,7 +22,8 @@ Expect (put every attribute on its own line):
           doubleQuote="bar"
           children={<Foo />}
           options={{ foo: "bar" }}
-          arrowFunction={value => this.setState({ myState: value })}/>
+          arrowFunction={value => this.setState({ myState: value })}
+        />
       );
     }
   }
@@ -47,7 +48,8 @@ Expect (put every attribute on its own line):
       return (
         <SelfCloseComponent
           singleQuote='foo'
-          doubleQuote="bar">
+          doubleQuote="bar"
+        >
           <p fooAttribute="foo" barAttribute="bar">
             Hi
           </p>
